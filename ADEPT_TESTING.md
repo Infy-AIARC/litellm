@@ -60,6 +60,18 @@ Expected: any sensible reply. This confirms the proxy and provider credentials w
 
 ## Stage 2 — ADEPT Router Config and Visibility
 
+### 2.0 Install the ADEPT extra
+
+ADEPT's Postgres-backed template store requires `sqlalchemy` and `psycopg2-binary`,
+which are shipped as an opt-in extra. Install them alongside the proxy:
+
+```bash
+pip install "litellm[proxy,adept]"
+```
+
+Without this extra, the proxy will raise `ImportError` on startup as soon as an
+`adept_router: true` deployment is loaded.
+
 ### 2.1 Sample config.yaml for ADEPT
 
 Add a deployment with the `adept_router_*` params:
